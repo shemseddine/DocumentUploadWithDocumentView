@@ -1,0 +1,32 @@
+﻿@model List<DocumentEntity>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<a class="btn btn-sm" asp-action="Upload">Upload</a>
+@if (Model.Any())
+{
+    <table class="table table-condensed">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var document in Model)
+            {
+                <tr>
+                    <td>@document.Id</td>
+                    <td><a asp-action="View" asp-route-id="@document.Id" target="_blank">@document.FileName</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No documents found. Please upload a document.</p>
+}
